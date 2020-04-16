@@ -1,0 +1,82 @@
+<div class="card">
+  <div class="card-body pb-0">
+    <h4 style="text-align: center;">Example of Angular Nested Grid</h4>
+    <div class="row">
+      <div class="col-12 col-md-12">
+        <div class="card">
+
+          <div class="card-body position-relative">
+            <div class="table-responsive cnstr-record product-tbl">
+              <table class="table table-bordered heading-hvr">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>id</th>
+                    <th>Nome</th>
+                    <th>Custo Mana</th>
+                    <th>Raridade</th>
+                    <th>Cores</th>
+                    <th>Tipos</th>
+                    <th>Artista</th>
+                    <th>Set</th>
+                  </tr>
+                </thead>
+
+                <tbody *ngFor="let card of cards; let i = index">
+
+                  <tr>
+                    <td>
+
+                      <a *ngIf="!hideme[i]" (click)="mostrarDetalheCard(i,card.id)">
+                        <mat-icon>expand_more</mat-icon>
+                      </a>
+                      <a *ngIf="hideme[i]" (click)="hideme[i] = !hideme[i]">
+                        <mat-icon>expand_less</mat-icon>
+                      </a>
+                    </td>
+                    <td>{{card.id}}</td>
+                    <td>{{card.nome}}</td>
+                    <td>{{card.custoMana }}</td>
+                    <td>{{card.raridade}}</td>
+                    <td>{{card.cores}}</td>
+                    <td>{{card.tipos}}</td>
+                    <td>{{card.artista}}</td>
+                    <td>{{card.set}}</td>
+                  </tr>
+
+                  <!-- <div id="myresult" class="img-zoom-result"></div> -->
+                  <tr [hidden]="!hideme[i]" class="sub-table no-bg">
+                    <td> </td>
+                    <td colspan="15" class="p-0">
+                      <table class="table mb-0 table-striped">
+                        <thead class="bg-dark text-white">
+                          <tr>
+                            <th>Imagem</th>
+                            <th>Nome</th>
+                            <th>Texto</th>
+                            <th>Frase</th>
+
+
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="detalhes?.length > 0">
+                          <tr *ngFor="let detalhe of detalhes[i]">
+                            <td>{{detalhe.imagem}}</td>
+                            <td>{{detalhe.nome}}</td>
+                            <td>{{detalhe.texto}}</td>
+                            <td>{{detalhe.frase}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
