@@ -1,4 +1,4 @@
-import { ICard } from './../icard';
+import { ICard } from '../interfaces/icard';
 
 export class Card implements ICard{
   id: string;

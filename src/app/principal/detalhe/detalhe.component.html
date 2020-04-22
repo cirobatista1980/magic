@@ -1,0 +1,18 @@
+<h2 mat-dialog-title class="d-flex justify-content-center" >{{detalhe.nome}}</h2>
+<mat-dialog-content class="mat-typography">
+
+  <div class="row">
+    <div class="col-3">
+      <img src={{detalhe.imagem}} />
+    </div>
+    <div class="col-9">
+      <p>{{detalhe.nome}}</p>
+      <p>{{detalhe.texto}}</p>
+      <p>{{detalhe.frase}}</p>
+    </div>
+
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions  align="center">
+  <button class="btn-primary" mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

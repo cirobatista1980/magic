@@ -1,6 +1,10 @@
+import { IDetalheCard } from './interfaces/idetalhescard';
 import { CardsService } from './cards.service';
 import { Component, OnInit } from '@angular/core';
 import { Card } from './models/card';
+import { DetalheCard } from './models/detalheCard';
+import { MatDialog } from '@angular/material/dialog';
+import { DetalheComponent } from './detalhe/detalhe.component';
 
 @Component({
   selector: 'app-principal',
@@ -10,9 +14,13 @@ import { Card } from './models/card';
 export class PrincipalComponent implements OnInit {
 
   cards: Card[];
+  detalhes: DetalheCard[];
   hideme = [];
-
-  constructor(private cardService: CardsService) { }
+  detalhe: IDetalheCard;
+  Index: any;
+  constructor(
+    private cardService: CardsService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getCards();
@@ -23,6 +31,26 @@ export class PrincipalComponent implements OnInit {
   }
 
   mostrarDetalheCard(index, id){
+    this.cardService.getCardById(id).subscribe(result => {
+      this.detalhe = result;
+      console.log(this.detalhe);
+      this.openDialog();
+    });
+  }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DetalheComponent, {
+      data: {
+        imagem: this.detalhe.imagem,
+        nome: this.detalhe.nome,
+        texto: this.detalhe.texto,
+        frase: this.detalhe.frase
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
   }
 }
